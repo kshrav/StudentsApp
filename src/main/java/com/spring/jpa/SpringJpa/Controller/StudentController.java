@@ -24,9 +24,15 @@ public class StudentController {
     }
 
     @PostMapping("students")
-    public void addStudent(@RequestBody Student student){
+    public String addStudent(@RequestBody Student student){
         service.addStudent(student);
+        return "Student added";
+    }
 
+    @PutMapping("students")
+    public Student updateStudent(@RequestBody Student student){
+        service.updateStudent(student);
+        return service.getStudentBYId(student.getStudentRollNo());
     }
 
     @DeleteMapping("/student/{id}")
